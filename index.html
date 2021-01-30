@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title></title>
+	<meta name="description" content="description content"> 
+
+
+</head>
+<body>
+    <div id='background' style="width: 900px; height: 750px; background-image: url('img/white_bg.jpg');">
+        <div id='character' style='position:absolute; top:150px; left:150px; background-image: url("img/down1.png"); height:86px;width:59px;'></div>
+    </div>
+    <script type="text/javascript">
+    var leftVal = 150, topVal = 150, direction = 'down', walkVal = 1;
+    function update(){
+        document.getElementById("character").style.left = leftVal + "px";
+        document.getElementById("character").style.top = topVal + "px";
+        document.getElementById("character").style.backgroundImage = "url('img/"+direction+walkVal+".png')";
+
+    }
+    document.onkeydown = function(e){
+        
+        console.log(e)
+        if (walkVal == 1){
+            walkVal = 2;
+        }
+        else if (walkVal == 2){
+            walkVal = 1;
+        }
+
+        if(e.keyCode == 37 && leftVal > 0){
+            //go left
+            leftVal = leftVal - 10;
+            direction = 'left';
+        }
+        else if(e.keyCode == 39 && leftVal < 820){
+            //go right
+            leftVal = leftVal + 10;
+            direction = 'right';
+        }
+        else if(e.keyCode == 40 && topVal < 620){
+            //go down
+            topVal = topVal + 10;
+            direction = 'down';
+        }
+        else if(e.keyCode == 38 && topVal > 0){
+            //go up
+            topVal = topVal - 10;
+            direction = 'top';
+        }
+        update();
+    }
+
+
+    </script>
+</body>
+</html>
